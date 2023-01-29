@@ -5,7 +5,7 @@ A command line application that searches a webpage for a link or a phrase provid
 
 ### Usage
 To use the cli:
-1. Clone the repository and navigate inside the root folder: `git clone ` and `cd webpage-searcher`
+1. Clone the repository and navigate inside the root folder: `git clone https://github.com/ioannisbalo/webpage-searcher.git` and `cd webpage-searcher`
 2. Make sure you have python3 (version 3.7+ preferrably) installed in your system: `python3 -V`
 3. You can optionally create a virtual environment:
     * `python3 -m venv ./venv`
