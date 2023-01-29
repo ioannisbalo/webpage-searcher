@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "url-checker"
+name = "webpage-searcher"
 description = "hello"
 version = "0.0.0"
 readme = "README.md"
