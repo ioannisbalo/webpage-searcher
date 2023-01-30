@@ -5,12 +5,12 @@ from src.finders import Result
 
 
 class PrintOutput(Output):
-    def write(self, results: List[Result]) -> None:
+    def write(self, results: List[Result], item_type: str, item: str) -> None:
         if not results:
-            print("No results found for provided input")
+            print(f"No results found for provided {item_type}: {item}")
             return
 
-        print("Results:")
+        print(f"Results for {item_type} {item}:")
         print("-----------------------------------------------")
         for result in results:
             print(f"Tag:        {result.tag}")

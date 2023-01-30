@@ -11,7 +11,7 @@ from src.utils.xpath import element_xpath
 class UrlFinder(Finder):
     def __init__(self, html: str) -> None:
         super().__init__(html)
-        self._tags = self._soup.find_all("a", recursive=True)
+        self._tags = [tag for tag in self._soup.find_all("a", recursive=True) if "href" in tag.attrs]
 
     def find(self, url: str) -> List[Result]:
         filled_url = self._fill_scheme(url)
@@ -46,9 +46,12 @@ class UrlFinder(Finder):
         return tag_domain and tag_domain == domain
 
     def _extract_domain(self, url: str) -> str:
-        parsed = urlparse(url)
-        domain = parsed.netloc
-        return domain.strip("www.").strip()
+        try:
+            parsed = urlparse(url)
+            domain = parsed.netloc
+            return domain.strip("www.").strip()
+        except (KeyError, ValueError, TypeError):
+            return None
 
     def _fill_scheme(self, url: str) -> str:
         if any(url.startswith(scheme) for scheme in schemes):

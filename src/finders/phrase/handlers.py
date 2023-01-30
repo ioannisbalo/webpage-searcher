@@ -51,5 +51,5 @@ class AnchorHandler(TagHandler):
             tag=self._tag.name,
             xpath=element_xpath(self._tag),
             string=self._tag.get_text(),
-            href=self._tag.attrs["href"],
+            href=self._tag.attrs.get("href"),
         )

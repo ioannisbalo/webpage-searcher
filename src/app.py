@@ -16,8 +16,8 @@ class App:
 
     def find_url(self, url: str) -> None:
         results = self._url_finder.find(url)
-        self._output.write(results)
+        self._output.write(results, "url", url)
 
     def find_phrase(self, phrase: str) -> None:
         results = self._phrase_finder.find(phrase)
-        self._output.write(results)
+        self._output.write(results, "phrase", phrase)
