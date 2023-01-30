@@ -14,6 +14,7 @@ def element_xpath(element: Tag) -> str:
                 components.append(f"{current.name}[{position}]")
             current = parent
         components.reverse()
-        return '/%s' % '/'.join(components)
+        path = "/".join(components)
+        return f"/{path}"
     except Exception:
         return "unable to calculate xpath"

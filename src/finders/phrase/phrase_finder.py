@@ -1,3 +1,4 @@
+from bs4 import NavigableString, Tag
 from typing import List, Type
 
 from src.finders.finder import Finder
@@ -17,10 +18,9 @@ class PhraseFinder(Finder):
         results = []
         for handler_class in self.handlers:
             for tag_name in handler_class.tags:
-                tags = self._soup.find_all(tag_name, recursive=True)
+                tags: List[Tag] = self._soup.find_all(tag_name, recursive=True)
                 for tag in tags:
-                    text = str(tag.string).lower()
-                    if phrase in text:
+                    if phrase in self._get_text(tag):
                         handler = handler_class(tag)
                         results.append(handler.result())
         return results
@@ -30,3 +30,7 @@ class PhraseFinder(Finder):
         if not result:
             raise ValueError("please provide an appropriate phrase, example: Chili Piper")
         return result.lower()
+
+    def _get_text(self, tag: Tag) -> str:
+        text = "".join([str(c) for c in tag.contents if isinstance(c, NavigableString)])
+        return text.lower()
