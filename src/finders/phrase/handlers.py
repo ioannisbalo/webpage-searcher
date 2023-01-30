@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 from src.utils.constants import as_child_tags, as_parent_tags, anchor_tags
 from src.utils.xpath import element_xpath
-from src.finders.result import Result
+from src.finders.result import Result, Link
 
 
 class TagHandler(ABC):
@@ -51,5 +51,8 @@ class AnchorHandler(TagHandler):
             tag=self._tag.name,
             xpath=element_xpath(self._tag),
             string=self._tag.get_text(),
-            href=self._tag.attrs.get("href"),
+            link=Link(
+                href=self._tag.attrs.get("href"),
+                nofollow="nofollow" in self._tag.attrs.get("rel", [])
+            ),
         )

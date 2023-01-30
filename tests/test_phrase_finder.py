@@ -26,7 +26,6 @@ class TestPhraseFinder(TestCase):
         for case in cases:
             with self.subTest(case["phrase"]):
                 results = self.phrase_finder.find(case["phrase"])
-                print(results)
                 self.assertEqual(results, case["results"])
 
     def test_find_phrase_invalid_input(self):

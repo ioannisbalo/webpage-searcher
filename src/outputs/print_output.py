@@ -14,8 +14,8 @@ class PrintOutput(Output):
         print("-----------------------------------------------")
         for result in results:
             print(f"Tag:        {result.tag}")
-            if result.href:
-                print(f"Found link: {result.href}")
+            if result.link:
+                print(f"Found link: {result.link.href}, nofollow: {result.link.nofollow}")
             print(f"XPath:      {result.xpath}")
             if result.string:
                 print(f"Full text:  {result.string}")

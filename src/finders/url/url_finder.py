@@ -3,7 +3,7 @@ from typing import List, Optional
 from urllib.parse import urlparse
 
 from src.finders.finder import Finder
-from src.finders.result import Result
+from src.finders.result import Result, Link
 from src.utils.constants import text_context_tags, schemes
 from src.utils.xpath import element_xpath
 
@@ -24,7 +24,10 @@ class UrlFinder(Finder):
         return Result(
             tag=tag.name,
             xpath=element_xpath(tag),
-            href=tag.attrs["href"],
+            link=Link(
+                href=tag.attrs["href"],
+                nofollow="nofollow" in tag.attrs.get("rel", [])
+            ),
             string=tag.getText(),
             context=self._find_context(tag),
         )
