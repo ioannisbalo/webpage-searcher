@@ -2,14 +2,13 @@ from bs4 import NavigableString, Tag
 from typing import List, Type
 
 from src.finders.finder import Finder
-from src.finders.phrase.handlers import AnchorHandler, ChildHandler, ParentHandler, TagHandler
+from src.finders.phrase.handlers import AnchorHandler, ParentHandler, TagHandler
 from src.finders.result import Result
 
 
 class PhraseFinder(Finder):
     handlers: Type[TagHandler] = [
         ParentHandler,
-        ChildHandler,
         AnchorHandler,
     ]
 

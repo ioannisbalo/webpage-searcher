@@ -24,8 +24,8 @@ class TestPhraseFinder(TestCase):
                 Result(tag="h2", xpath="/html/body/div/div/section[6]/div/div[2]/div[1]/div[1]/h2", string="Chili Piper")
             ]},
             {"phrase": "veza digital is", "results": [
+                Result(tag="p", xpath="/html/body/div/div/section[1]/div[1]/div[6]/div[2]/div[3]/div[2]/div[1]/p", string="Veza Digital is a full-service growth marketing "),
                 Result(tag="div", xpath="/html/body/div/div/section[1]/div[1]/div[6]/div[2]/div[3]/div[2]/div[4]", string="Veza Digital is a full-service growth marketing agency that helps SaaS and B2B brands reach their marketing goals and beyond."),
-                Result(tag="p", xpath="/html/body/div/div/section[1]/div[1]/div[6]/div[2]/div[3]/div[2]/div[1]/p", string="Veza Digital is a full-service growth marketing ")
             ]},
         ]
         for case in cases:

@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from typing import List
 
 from src.finders.result import Result
+from src.utils.constants import all_tags, text_inline_tags
 
 
 class Finder(ABC):
@@ -17,8 +18,8 @@ class Finder(ABC):
         self._soup = self._clean_html(soup)
 
     def _clean_html(self, soup: BeautifulSoup) -> BeautifulSoup:
-        to_remove = ["script", "style"]
-        for tag in to_remove:
-            for item in soup.find_all(tag, recursive=True):
-                item.decompose()
+        for item in soup.find_all({"script", "style"}, recursive=True):
+            item.decompose()
+        for item in soup.find_all(text_inline_tags, recursive=True):
+            item.unwrap()
         return soup
