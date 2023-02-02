@@ -27,7 +27,7 @@ jobs:
         env:
           PKG_VERSION: ${{ github.ref_name }}
         run: >-
-          sed -i "s/version = \"0.0.0\"/version = \"${PKG_VERSION}\"/g" pyproject.toml
-          poetry build
+          sed -i "s/version = \"0.0.0\"/version = \"${PKG_VERSION}\"/g" pyproject.toml;
+          poetry build;
       - name: Publish Package
         run: poetry publish
