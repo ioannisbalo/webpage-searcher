@@ -1,17 +1,17 @@
 from unittest import TestCase
+from typing import List
 
 from src.finders.url.url_finder import UrlFinder
 from src.finders.result import Result, Link
 
 
 class TestUrlFinder(TestCase):
-    url_finder: UrlFinder
+    html: str
 
     @classmethod
     def setUpClass(cls):
         with open("tests/files/veza_domain.txt") as f:
-            html = f.read()
-        cls.url_finder = UrlFinder(html)
+            cls.html = f.read()
 
     def test_find_url(self):
         cases = [
@@ -28,13 +28,41 @@ class TestUrlFinder(TestCase):
         ]
         for case in cases:
             with self.subTest(case["url"]):
-                results = self.url_finder.find(case["url"])
-                self.assertEqual(results, case["results"])
-
+                self._assert_case(self.html, case["url"], case["results"])
 
     def test_find_url_invalid_input(self):
+        finder = UrlFinder(self.html)
         cases = ["", " ", "/", "/hello.com"]
         for case in cases:
             with self.subTest(case):
                 with self.assertRaises(ValueError):
-                    self.url_finder.find(case)
+                    finder.find(case)
+
+    def test_find_no_follow(self):
+        html = "<html><body><p>this is <a href=\"https://google.com\" rel=\"nofollow\">google</a>!</p></body></html>"
+        expected = [Result(tag="a", xpath="/html/body/p/a", string="google", link=Link(href="https://google.com", nofollow=True), context='this is google!')]
+        self._assert_case(html, "www.google.com", expected)
+
+    def test_find_with_www(self):
+        html = "<html><body><a href=\"https://google.com\">google</a></body></html>"
+        expected = [Result(tag="a", xpath="/html/body/a", string="google", link=Link(href="https://google.com", nofollow=False))]
+        self._assert_case(html, "www.google.com", expected)
+
+    def test_exclude_internal_links(self):
+        html = "<html><body><a href=\"/products\">products</a></body></html>"
+        self._assert_case(html, "products", [])
+
+    def test_find_context_image(self):
+        html = "<html><body><a href=\"https://google.com\"><img src=\"google.png\"></img></a></body></html>"
+        expected = [Result(context="google.png", tag="a", xpath="/html/body/a", string="", link=Link(href="https://google.com", nofollow=False))]
+        self._assert_case(html, "www.google.com", expected)
+
+    def test_find_context_parent(self):
+        html = "<html><body><p>This is <a href=\"https://google.com\">google</a>!</p></body></html>"
+        expected = [Result(context="This is google!", tag="a", xpath="/html/body/p/a", string="google", link=Link(href="https://google.com", nofollow=False))]
+        self._assert_case(html, "www.google.com", expected)
+
+    def _assert_case(self, html: str, url: str, expected: List[Result]) -> None:
+        finder = UrlFinder(html)
+        results = finder.find(url)
+        self.assertEqual(results, expected)
