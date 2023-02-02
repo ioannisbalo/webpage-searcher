@@ -1,8 +1,8 @@
 from unittest import TestCase
 from typing import List
 
-from src.finders.phrase.phrase_finder import PhraseFinder
-from src.finders.result import Result, Link
+from webpage_searcher.finders.phrase.phrase_finder import PhraseFinder
+from webpage_searcher.finders.result import Result, Link
 
 
 class TestPhraseFinder(TestCase):

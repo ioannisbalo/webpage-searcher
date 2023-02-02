@@ -1,9 +1,9 @@
 from bs4 import NavigableString, Tag
 from typing import List, Type
 
-from src.finders.finder import Finder
-from src.finders.phrase.handlers import AnchorHandler, ParentHandler, TagHandler
-from src.finders.result import Result
+from webpage_searcher.finders.finder import Finder
+from webpage_searcher.finders.phrase.handlers import AnchorHandler, ParentHandler, TagHandler
+from webpage_searcher.finders.result import Result
 
 
 class PhraseFinder(Finder):

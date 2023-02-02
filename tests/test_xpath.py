@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from unittest import TestCase
 
-from src.utils.xpath import element_xpath
+from webpage_searcher.utils.xpath import element_xpath
 
 
 class TestXpath(TestCase):

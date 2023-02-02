@@ -1,9 +1,9 @@
 from bs4 import Tag
 from abc import ABC, abstractmethod
 
-from src.utils.constants import text_block_tags, anchor_tags
-from src.utils.xpath import element_xpath
-from src.finders.result import Result, Link
+from webpage_searcher.utils.constants import text_block_tags, anchor_tags
+from webpage_searcher.utils.xpath import element_xpath
+from webpage_searcher.finders.result import Result, Link
 
 
 class TagHandler(ABC):

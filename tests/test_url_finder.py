@@ -1,8 +1,8 @@
 from unittest import TestCase
 from typing import List
 
-from src.finders.url.url_finder import UrlFinder
-from src.finders.result import Result, Link
+from webpage_searcher.finders.url.url_finder import UrlFinder
+from webpage_searcher.finders.result import Result, Link
 
 
 class TestUrlFinder(TestCase):

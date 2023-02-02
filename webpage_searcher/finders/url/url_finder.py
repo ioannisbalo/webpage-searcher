@@ -2,10 +2,10 @@ from bs4 import Tag
 from typing import List, Optional
 from urllib.parse import urlparse
 
-from src.finders.finder import Finder
-from src.finders.result import Result, Link
-from src.utils.constants import text_context_tags, schemes
-from src.utils.xpath import element_xpath
+from webpage_searcher.finders.finder import Finder
+from webpage_searcher.finders.result import Result, Link
+from webpage_searcher.utils.constants import text_context_tags, schemes
+from webpage_searcher.utils.xpath import element_xpath
 
 
 class UrlFinder(Finder):

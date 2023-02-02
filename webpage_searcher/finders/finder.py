@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 from bs4 import BeautifulSoup
 from typing import List
 
-from src.finders.result import Result
-from src.utils.constants import all_tags, text_inline_tags
+from webpage_searcher.finders.result import Result
+from webpage_searcher.utils.constants import all_tags, text_inline_tags
 
 
 class Finder(ABC):
