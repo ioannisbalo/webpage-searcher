@@ -4,9 +4,6 @@ description = "hello"
 version = "0.0.0"
 readme = "README.md"
 authors = ["john-blmns"]
-packages = [
-    { include = "webpage-searcher" }
-]
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4"

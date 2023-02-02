@@ -1,0 +1,33 @@
+name: Publish to PyPi
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-n-publish:
+    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Python 3.7.3
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.7.3"
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: "1.3.2"
+      - name: Configure Poetry
+        env:
+          API_TOKEN: {{ secrets.PYPI_API_TOKEN }}
+        run: poetry config pypi-token.pypi $API_TOKEN
+      - name: Build Package
+        env:
+          PKG_VERSION: {{ github.ref_name }}
+        run: >-
+          sed -i "s/version = \"0.0.0\"/version = \"${PKG_VERSION}\"/g" pyproject.toml
+          poetry build
+      - name: Publish Package
+        run: poetry publish
