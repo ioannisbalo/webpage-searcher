@@ -1,16 +1,16 @@
 from abc import ABC, abstractmethod
+
 from bs4 import BeautifulSoup
-from typing import List
 
 from webpage_searcher.finders.result import Result
-from webpage_searcher.utils.constants import all_tags, text_inline_tags
+from webpage_searcher.utils.constants import text_inline_tags
 
 
 class Finder(ABC):
     _soup: BeautifulSoup
 
     @abstractmethod
-    def find(self, item: str) -> List[Result]:
+    def find(self, item: str) -> list[Result]:
         pass
 
     def __init__(self, html: str) -> None:

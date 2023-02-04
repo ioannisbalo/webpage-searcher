@@ -1,11 +1,9 @@
-from typing import List
-
-from webpage_searcher.outputs.ouput import Output
 from webpage_searcher import Result
+from webpage_searcher.outputs.ouput import Output
 
 
 class PrintOutput(Output):
-    def write(self, results: List[Result], item_type: str, item: str) -> None:
+    def write(self, results: list[Result], item_type: str, item: str) -> None:
         if not results:
             print(f"No results found for provided {item_type}: {item}")
             return

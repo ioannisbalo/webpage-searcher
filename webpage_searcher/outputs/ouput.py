@@ -1,10 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import List
 
 from webpage_searcher import Result
 
 
 class Output(ABC):
     @abstractmethod
-    def write(self, results: List[Result], item_type: str, item: str):
+    def write(self, results: list[Result], item_type: str, item: str) -> None:
         pass

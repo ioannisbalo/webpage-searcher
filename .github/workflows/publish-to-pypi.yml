@@ -7,14 +7,14 @@ on:
 
 jobs:
   build-n-publish:
-    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+    name: Build and publish Python 🐍 distributions 📦 to PyPI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Set up Python 3.7
         uses: actions/setup-python@v3
         with:
-          python-version: "3.7"
+          python-version: "3.9"
       - name: Install Poetry
         uses: abatilo/actions-poetry@v2
         with:

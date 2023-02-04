@@ -7,6 +7,7 @@ class Link:
     href: Optional[str] = None
     nofollow: bool = False
 
+
 @dataclass
 class Result:
     tag: str

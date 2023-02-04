@@ -1,5 +1,4 @@
 from bs4 import NavigableString, Tag
-from typing import List, Type
 
 from webpage_searcher.finders.finder import Finder
 from webpage_searcher.finders.phrase.handlers import AnchorHandler, ParentHandler, TagHandler
@@ -7,17 +6,17 @@ from webpage_searcher.finders.result import Result
 
 
 class PhraseFinder(Finder):
-    handlers: Type[TagHandler] = [
+    handlers: list[type[TagHandler]] = [
         ParentHandler,
         AnchorHandler,
     ]
 
-    def find(self, phrase: str) -> List[Result]:
+    def find(self, phrase: str) -> list[Result]:
         phrase = self._format_phrase(phrase)
         results = []
         for handler_class in self.handlers:
             for tag_name in handler_class.tags:
-                tags: List[Tag] = self._soup.find_all(tag_name, recursive=True)
+                tags: list[Tag] = self._soup.find_all(tag_name, recursive=True)
                 for tag in tags:
                     if phrase in self._get_text(tag):
                         handler = handler_class(tag)
