@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from webpage_searcher.finders import Result
+from webpage_searcher import Result
 
 
 class Output(ABC):

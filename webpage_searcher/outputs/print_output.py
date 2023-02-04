@@ -1,7 +1,7 @@
 from typing import List
 
 from webpage_searcher.outputs.ouput import Output
-from webpage_searcher.finders import Result
+from webpage_searcher import Result
 
 
 class PrintOutput(Output):
