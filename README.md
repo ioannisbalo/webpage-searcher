@@ -26,3 +26,6 @@ results = finder.find("hello")
 To run the tests:
 1. Install dev dependencies: `poetry install --all-extras`
 2. Run the tests: `pytest -v`
+
+### Example
+You can find a CLI built based on this library in this [repository](https://github.com/ioannisbalo/webpage-searcher-cli).
